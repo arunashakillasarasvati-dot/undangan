@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wedding of Nindi & Dimas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-warm: #fcf9f5;
+      --bg-card: #f5ede4;
+      --text-main: #2b2520;
+      --text-muted: #73695f;
+      --accent: #875c36;
+      --accent-hover: #6b4625;
+      --border-color: #e5dacd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ede5dc;
+      color: var(--text-main);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background: var(--bg-warm);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Cover Overlay */
+    .cover-overlay {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-warm) 100%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2.5rem 1.8rem;
+      transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .cover-overlay.opened {
+      transform: translate(-50%, -100%);
+    }
+
+    .cover-photo-frame {
+      width: 190px;
+      height: 260px;
+      border-radius: 95px 95px 16px 16px;
+      overflow: hidden;
+      margin-bottom: 1.4rem;
+      box-shadow: 0 10px 25px rgba(135, 92, 54, 0.15);
+      border: 4px solid #ffffff;
+    }
+
+    .cover-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    h1, h2, h3, .serif-font {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.03em;
+    }
+
+    .subtitle-badge {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .couple-title {
+      font-size: 2.4rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.8rem;
+      background-color: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    section {
+      padding: 3.5rem 1.8rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-photo-frame {
+      width: 220px;
+      height: 310px;
+      border-radius: 110px 110px 20px 20px;
+      overflow: hidden;
+      margin: 1.5rem auto 2rem;
+      box-shadow: 0 12px 28px rgba(135, 92, 54, 0.12);
+      border: 5px solid #ffffff;
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .profile-card {
+      margin: 1.5rem 0;
+    }
+
+    .profile-name {
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .profile-parent {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 1.5rem 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .timer-box {
+      background: #ffffff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      min-width: 62px;
+      border: 1px solid var(--border-color);
+    }
+
+    .timer-num {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: block;
+    }
+
+    .timer-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Galeri */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #eee;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .gallery-item.full-width {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item.full-width img {
+      height: 260px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    footer {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Cover Layar Penuh -->
+  <div class="cover-overlay" id="cover">
+    <div class="cover-photo-frame">
+      <img src="foto-1.jpeg" alt="Nindi & Dimas">
+    </div>
+    <p class="subtitle-badge">The Wedding Of</p>
+    <h1 class="couple-title">Nindi &amp; Dimas</h1>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.8rem;">
+      Kepada Yth. Bapak/Ibu/Saudara/i:<br>
+      <strong id="guest-name" style="font-size: 1.15rem; color: var(--text-main); display: inline-block; margin-top: 5px;">Tamu Undangan</strong>
+    </p>
+    <button class="btn" onclick="openInvitation()">Buka Undangan</button>
+  </div>
+
+  <!-- Hero Header & Profil Mempelai -->
+  <section>
+    <p class="subtitle-badge">Walimatul 'Urs</p>
+    
+    <div class="hero-photo-frame">
+      <img src="foto-2.jpeg" alt="Nindi Novitasari & Dimas Wibowo Purwanto">
+    </div>
+
+    <!-- Profil Pria -->
+    <div class="profile-card">
+      <h2 class="profile-name serif-font">Dimas Wibowo Purwanto, A.Md.Kom.</h2>
+      <p class="profile-parent">
+        Putra dari Bapak Sigit Purwanto<br>&amp; Ibu Tri Suryawati
+      </p>
+    </div>
+
+    <div style="font-size: 1.8rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); margin: 0.8rem 0;">
+      &amp;
+    </div>
+
+    <!-- Profil Wanita -->
+    <div class="profile-card">
+      <h2 class="profile-name serif-font">Nindi Novitasari</h2>
+      <p class="profile-parent">
+        Putri dari Bapak Arief Arianto<br>&amp; Ibu Sri Sugiarti
+      </p>
+    </div>
+
+    <!-- Ayat Suci -->
+    <div style="margin: 2.5rem 0 0.5rem; padding: 0 0.5rem;">
+      <p class="quote">
+        "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+        <br><br>
+        <strong>— QS. Ar-Rum: 21</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Countdown Timer -->
+  <section>
+    <p class="subtitle-badge">Menghitung Hari</p>
+    <div class="countdown">
+      <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Hari</span></div>
+      <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Jam</span></div>
+      <div class="timer-box"><span class="timer-num" id="mins">00</span><span class="timer-label">Menit</span></div>
+      <div class="timer-box"><span class="timer-num" id="secs">00</span><span class="timer-label">Detik</span></div>
+    </div>
+  </section>
+
+  <!-- Detail Rangkaian Acara -->
+  <section>
+    <p class="subtitle-badge">Waktu &amp; Lokasi Acara</p>
+
+    <div class="card">
+      <h3>Akad &amp; Resepsi</h3>
+      <p style="font-weight: 600; color: var(--accent); margin-top: 4px;">Kamis, 05 November 2026</p>
+      <p style="font-weight: 500; font-size: 0.95rem; margin-top: 4px;">Pukul 08.00 WIB — Selesai</p>
+      
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 1rem;">
+        Kediaman Mempelai / Lokasi Acara<br>
+        Klik tombol di bawah untuk membuka petunjuk arah Google Maps:
+      </p>
+      
+      <div style="margin-top: 1.2rem;">
+        <a href="https://maps.app.goo.gl/cBMrou3dF1rnTuF5A?g_st=aw" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.55rem 1.4rem;">
+          📍 Buka di Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri Foto / Our Moments -->
+  <section>
+    <p class="subtitle-badge">Momen Bahagia</p>
+    <h3 style="margin-bottom: 0.5rem;">Our Moments</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item full-width">
+        <img src="foto-1.jpeg" alt="Nindi & Dimas Moment 1">
+      </div>
+      <div class="gallery-item">
+        <img src="foto-3.jpeg" alt="Nindi & Dimas Moment 2">
+      </div>
+      <div class="gallery-item">
+        <img src="foto-4.jpeg" alt="Nindi & Dimas Moment 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP Konfirmasi Kehadiran -->
+  <section>
+    <p class="subtitle-badge">Konfirmasi Kehadiran</p>
+    <h3 style="margin-bottom: 0.8rem;">RSVP</h3>
+    <form onsubmit="sendRSVP(event)">
+      <input type="text" id="rsvp-name" placeholder="Nama Lengkap" required />
+      <select id="rsvp-status" required>
+        <option value="Hadir">Saya akan Hadir</option>
+        <option value="Masih Ragu-ragu">Masih Ragu-ragu</option>
+        <option value="Tidak Hadir">Maaf, Belum Bisa Hadir</option>
+      </select>
+      <input type="number" id="rsvp-count" min="1" max="5" value="1" placeholder="Jumlah Orang" required />
+      <textarea id="rsvp-message" rows="3" placeholder="Tuliskan ucapan & doa restu..."></textarea>
+      <button type="submit" class="btn" style="width: 100%;">Kirim Konfirmasi via WhatsApp</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>Terima kasih atas doa &amp; restu Anda</p>
+    <p class="serif-font" style="font-size: 1.25rem; font-weight: 600; margin-top: 4px;">Nindi &amp; Dimas</p>
+  </footer>
+
+</div>
+
+<script>
+  // 1. Membaca Parameter Tamu dari URL (?to=Nama+Tamu)
+  const urlParams = new URLSearchParams(window.location.search);
+  const guest = urlParams.get('to') || 'Tamu Undangan';
+  document.getElementById('guest-name').innerText = guest;
+  document.getElementById('rsvp-name').value = guest !== 'Tamu Undangan' ? guest : '';
+
+  // 2. Buka Undangan
+  function openInvitation() {
+    document.getElementById('cover').classList.add('opened');
+  }
+
+  // 3. Countdown Timer (05 November 2026, 08:00 WIB)
+  const targetDate = new Date('2026-11-05T08:00:00+07:00').getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff > 0) {
+      document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60)) / (1000 * 60));
+      document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+    }
+  }, 1000);
+
+  // 4. Kirim Konfirmasi RSVP via WhatsApp
+  function sendRSVP(e) {
+    e.preventDefault();
+    // Silakan masukkan nomor WhatsApp Anda di sini (awali dengan 62)
+    const phone = "6281234567890"; 
+    const name = document.getElementById('rsvp-name').value;
+    const status = document.getElementById('rsvp-status').value;
+    const count = document.getElementById('rsvp-count').value;
+    const msg = document.getElementById('rsvp-message').value;
+
+    const waText = `Halo Nindi & Dimas,%0A%0ASaya *${encodeURIComponent(name)}* ingin mengonfirmasi kehadiran:%0A• Kehadiran: *${encodeURIComponent(status)}*%0A• Jumlah: ${count} orang%0A• Ucapan: "${encodeURIComponent(msg)}"`;
+    window.open(`https://wa.me/${phone}?text=${waText}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
